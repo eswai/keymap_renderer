@@ -76,7 +76,7 @@ function convertKCtoChar(kc) {
     "KC_PAUSE" : "Pause",
     "KC_INSERT" : "Insert",
     "KC_HOME" : "Home",
-    "KC_PGUP" : "PG UP",
+    "KC_PGUP" : "Pg Up",
     "KC_DELETE" : "Delete",
     "KC_END" : "End",
     "KC_PGDOWN" : "Pg Down",
@@ -120,14 +120,14 @@ function convertKCtoChar(kc) {
     "KC_EXECUTE" : "Execute",
     "KC_HELP" : "Help",
     "KC_MENU" : "Menu",
-    "KC_SELECT" : "SELECT",
-    "KC_STOP" : "STOP",
-    "KC_AGAIN" : "AGAIN",
-    "KC_UNDO" : "UNDO",
-    "KC_CUT" : "CUT",
-    "KC_COPY" : "COPY",
-    "KC_PASTE" : "PASTE",
-    "KC_FIND" : "FIND",
+    "KC_SELECT" : "Select",
+    "KC_STOP" : "Stop",
+    "KC_AGAIN" : "Again",
+    "KC_UNDO" : "Undo",
+    "KC_CUT" : "Cut",
+    "KC_COPY" : "Copy",
+    "KC_PASTE" : "Paste",
+    "KC_FIND" : "Find",
     "KC__MUTE" : "MUTE",
     "KC__VOLUP" : "VOL UP",
     "KC__VOLDOWN" : "VOL DOWN",
@@ -178,7 +178,7 @@ function convertKCtoChar(kc) {
     "KC_KP_LCBRACKET" : "[",
     "KC_KP_RCBRACKET" : "]",
     "KC_KP_TAB" : "TAB",
-    "KC_KP_BSPACE" : "BACKSPACE",
+    "KC_KP_BSPACE" : "Backsp",
     "KC_KP_A" : "KP_A",
     "KC_KP_B" : "KP_B",
     "KC_KP_C" : "KP_C",
@@ -213,8 +213,8 @@ function convertKCtoChar(kc) {
     "KC_KP_OCTAL" : "KP_OCTAL",
     "KC_KP_DECIMAL" : "KP_DECIMAL",
     "KC_KP_HEXADECIMAL" : "KP_HEXADECIMAL",
-    "KC_LCTRL" : "CTRL",
-    "KC_LSHIFT" : "SHIFT",
+    "KC_LCTRL" : "Ctrl",
+    "KC_LSHIFT" : "Shift",
     "KC_LALT" : "Alt",
     "KC_LGUI" : "Gui",
     "KC_RCTRL" : "Ctrl",
@@ -223,6 +223,7 @@ function convertKCtoChar(kc) {
     "KC_RGUI" : "Gui",
 
     "KC_TRANSPARENT" : "",
+    "KC_TRNS" : "",
     "_______" : "",
 
 
@@ -256,7 +257,7 @@ function convertKCtoChar(kc) {
 /* Commands */
     "KC_PSCR" : "PSCREEN",
     "KC_PAUS" : "Pause",
-    "KC_BRK" : "BREAK",
+    "KC_BRK" : "Break",
     "KC_INS" : "Insert",
     "KC_DEL" : "Delete",
     "KC_PGDN" : "Pg Down",
@@ -319,8 +320,8 @@ function convertKCtoChar(kc) {
 
     /* Consumer Page (0x0C) */
     "KC_MUTE" : "MUTE",
-    "KC_VOLU" : "Vol Up",
-    "KC_VOLD" : "Vol Down",
+    "KC_VOLU" : "VOL UP",
+    "KC_VOLD" : "VOL DOWN",
     "KC_MNXT" : "",
     "KC_MPRV" : "",
     "KC_MSTP" : "",
@@ -428,7 +429,7 @@ function convertKCtoChar(kc) {
     "KC_DOUBLE_QUOTE" : "\"",
     "KC_DQUO" : "\"",
 
-    "KC_DELT" : "DELETE",
+    "KC_DELT" : "Delete",
 
 
     // JP
@@ -482,6 +483,6 @@ function convertKCtoChar(kc) {
   if (c in KCtoChar) {
     return KCtoChar[c]
   } else {
-    return c
+    return c.replace(/KC_/g, "")
   }
 }
