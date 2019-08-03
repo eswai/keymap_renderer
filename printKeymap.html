@@ -5,6 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="KLEparser.js"></script>
     <script src="svg.min.js"></script>
+    <script src="FileSaver.min.js"></script>
     <script src="https://unpkg.com/vue-swatches"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
   </head>
@@ -30,6 +31,7 @@
           <div class="field is-grouped">
             <div class="control">
               <button id="renderBtn" v-on:click="renderKB" class="button is-dark">Render</button>
+              <button id="createSvg" v-on:click="createSVG" class="button is-dark">SVG</button>
             </div>
           </div>
           <div id="keymap"></div>
@@ -66,6 +68,12 @@
       },
 
       methods: {
+        createSVG: function() {
+          this.renderKB()
+          var svgf = new Blob([this.draw.svg()], {type : 'image/svg+xml'})
+          saveAs(svgf, "keymap.svg")
+        },
+
         renderKB: function() {
           var that = this
           var kmap = []
