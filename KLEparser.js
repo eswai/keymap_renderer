@@ -52,7 +52,7 @@ class Key {
 
 function KLEparser(raw) {
   json = raw2json(raw)
-  console.log(json)
+  // console.log(json)
   var layout = JSON.parse(json)
 
   var kc = "Q"
