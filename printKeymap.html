@@ -50,8 +50,8 @@
   <script type="text/javascript">
     const keypitch = 50
     const keygap = 4
-    const fontsize = 15
-    const layerfont = 10
+    const fontsize = 13
+    const layerfont = 8
 
     var app = new Vue({
       el: '#app',
@@ -103,7 +103,7 @@
             var kc = that.draw.rect(key.w * keypitch - keygap, key.h * keypitch - keygap)
                          .radius(3)
                          .fill('#fff')
-                         .stroke('#000')
+                         .stroke('#aaa')
             gr.add(kc)
             var bk = kc.bbox()
 
@@ -129,8 +129,8 @@
             if (bt0.width > 40) t0.scale(40 / bt0.width, 1)
             gr.add(t0)
 
-            var t1 = that.draw.text(leg[1])
-                        .font({ fill: '#FF8000', family: 'Helvetica' })
+            var t1 = that.draw.text(leg[4])
+                        .font({ fill: '#01DF01', family: 'Helvetica' })
                         .size(layerfont)
             var bt1 = t1.bbox()
             if (bt1.width > 21) {
@@ -143,8 +143,8 @@
             if (bt1.width > 21) t1.scale(21 / bt1.width, 1)
             gr.add(t1)
 
-            var t2 = that.draw.text(leg[2])
-                        .font({ fill: '#2E2EFE', family: 'Helvetica' })
+            var t2 = that.draw.text(leg[1])
+                        .font({ fill: '#0080FF', family: 'Helvetica' })
                         .size(layerfont)
             var bt2 = t2.bbox()
             if (bt2.width > 21) {
@@ -157,7 +157,7 @@
             gr.add(t2)
 
             var t3 = that.draw.text(leg[3])
-                        .font({ fill: '#BF00FF', family: 'Helvetica' })
+                        .font({ fill: '#8000FF', family: 'Helvetica' })
                         .size(layerfont)
             var bt3 = t3.bbox()
             if (bt3.width > 21) {
@@ -169,8 +169,8 @@
             t3.y(bk.height - 2 - bt3.height)
             gr.add(t3)
 
-            var t4 = that.draw.text(leg[4])
-                        .font({ fill: '#04B431', family: 'Helvetica' })
+            var t4 = that.draw.text(leg[2])
+                        .font({ fill: '#FF8000', family: 'Helvetica' })
                         .size(layerfont)
             var bt4 = t4.bbox()
             if (bt4.width > 21) {
