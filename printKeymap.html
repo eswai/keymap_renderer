@@ -130,42 +130,49 @@
                         .font({ fill: '#FF8000', family: 'Helvetica' })
                         .size(layerfont)
             var bt1 = t1.bbox()
-            if (bt1.width > 25) t1.transform({scaleX: 25 / bt1.width, cx: 0})
-            t1.x(3)
-            t1.y(3)
+            if (bt1.width > 21) t1.transform({scaleX: 21 / bt1.width, cx: 0})
+            t1.x(2)
+            t1.y(2)
             gr.add(t1)
 
             var t2 = that.draw.text(leg[2])
                         .font({ fill: '#2E2EFE', family: 'Helvetica' })
                         .size(layerfont)
             var bt2 = t2.bbox()
-            if (bt2.width > 25) t2.transform({scaleX: 25 / bt2.width, cx: 0})
-            t2.x(3)
-            t2.y(bk.height - 3 - bt2.height)
+            if (bt2.width > 21) t2.transform({scaleX: 21 / bt2.width, cx: 0})
+            t2.x(2)
+            t2.y(bk.height - 2 - bt2.height)
             gr.add(t2)
 
-            var t3 = that.draw.text(leg[4])
-                        .font({ fill: '#04B431', family: 'Helvetica' })
-                        .size(layerfont)
-            var bt3 = t3.bbox()
-            if (bt3.width > 25) t3.transform({scaleX: 25 / bt3.width, cx: bt3.width})
-            t3.x(bk.width - 3 - bt3.width)
-            t3.y(3)
-            gr.add(t3)
-
-            var t4 = that.draw.text(leg[3])
+            var t3 = that.draw.text(leg[3])
                         .font({ fill: '#BF00FF', family: 'Helvetica' })
                         .size(layerfont)
+            var bt3 = t3.bbox()
+            if (bt3.width > 21) {
+              t3.cx(bk.width - 2 - bt3.width * 21 / bt3.width / 2)
+              t3.scale(21 / bt3.width, 1)
+            } else {
+              t3.x(bk.width - 2 - bt3.width)
+            }
+            t3.y(bk.height - 2 - bt3.height)
+            gr.add(t3)
+
+            var t4 = that.draw.text(leg[4])
+                        .font({ fill: '#04B431', family: 'Helvetica' })
+                        .size(layerfont)
             var bt4 = t4.bbox()
-            if (bt4.width > 25) t4.transform({scaleX: 25 / bt4.width, cx: bt4.width - 3})
-            t4.x(bk.width - 3 - bt4.width)
-            t4.y(bk.height - 3 - bt4.height)
+            if (bt4.width > 21) {
+              t4.cx(bk.width - 2 - bt4.width * 21 / bt4.width / 2)
+              t4.scale(21 / bt4.width, 1)
+            } else {
+              t4.x(bk.width - 2 - bt4.width)
+            }
+            t4.y(2)
             gr.add(t4)
 
             gr.cx(key.centerX() * keypitch)
             gr.cy(key.centerY() * keypitch)
             gr.rotate(key.r * 180 / Math.PI)
-
             c++
           })
         }
