@@ -6,6 +6,7 @@
     <script src="KLEparser.js"></script>
     <script src="svg.min.js"></script>
     <script src="FileSaver.min.js"></script>
+    <script src="QMKkeycode.js"></script>
     <script src="https://unpkg.com/vue-swatches"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
   </head>
@@ -53,7 +54,7 @@
     const keypitch = 50
     const keygap = 4
     const fontsize = 13
-    const layerfont = 8
+    const layerfont = 9
 
     var app = new Vue({
       el: '#app',
@@ -85,15 +86,15 @@
             var km = that.keymap.replace(/\/\*[^]+?\*\//g, "").replace(/\/\/[^\n]+\n/g, "").replace(/\\\s*\n/g, "").replace(/\n/g, "")
             // console.log(km)
             lines = km.split("LAYOUT(")
-            console.log(lines)
+            // console.log(lines)
             for (k = 1; k < lines.length; k++) {
               var kc = lines[k].replace(/\)[^\)]+$/g, "").split(",")
-             console.log(kc)
+             // console.log(kc)
               if (kc != null && kc.length == kb.keys.length) {
                   for (var j = 0; j < kc.length; j++) {
-                    kc[j] = kc[j].replace(/\s+/g, "").replace(/KC_NO/, "").replace(/KC_TRS/, "").replace(/XXXXXXX/, "").replace(/_______/, "").replace(/KC_/, "").replace(/JP_/, "")
+                    kc[j] = convertKCtoChar(kc[j])
                   }
-                  // console.log(kc)
+                  console.log(kc)
                   kmap.push(kc)
               }
             }
