@@ -14,9 +14,16 @@
         <h1 class="title">Keyboard Layout 3D Viewer</h1>
         <div id="app">
           <div class="field">
-            <label class="label">Keyboard Layout Editor Raw data (Raw data is now supported!)</label>
+            <label class="label">Keyboard Layout Editor Raw data</label>
             <div class="control">
               <textarea v-model="rawdata" placeholder="Raw data" class="textarea"></textarea>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">QMK keymap.c</label>
+            <div class="control">
+              <textarea v-model="keymap" placeholder="keymap.c" class="textarea"></textarea>
             </div>
           </div>
 
@@ -44,12 +51,14 @@
     const keypitch = 50
     const keygap = 4
     const fontsize = 15
+    const layerfont = 10
 
     var app = new Vue({
       el: '#app',
       data: {
         draw: "",
-        rawdata: "[{r:10,rx:1,y:-0.1,x:2,c:\"#e3e3e3\"},\"E\"],[{y:-0.65,x:1},\"W\",{x:1},\"R\"],[{y:-0.75},\"Q\"],[{y:-0.9,x:4},\"T\"],[{y:-0.7,x:2},\"D\"],[{y:-0.65,x:1},\"S\",{x:1},\"F\"],[{y:-0.75},\"A\"],[{y:-0.9,x:4},\"G\"],[{y:-0.7,x:2},\"C\"],[{y:-0.65,x:1},\"X\",{x:1},\"V\"],[{y:-0.75},\"Z\"],[{y:-0.9,x:4},\"B\"],[{y:-0.75,x:5,c:\"#575757\",t:\"#ffffff\",h:1.5},\"Ctrl\"],[{y:-0.95,x:2},\"super\"],[{y:-0.65,x:1},\"Tab\",{x:1},\"Shift\"],[{y:-0.75,c:\"#ab0202\",t:\"#e3e3e3\"},\"Esc\"],[{y:-0.9,x:4,c:\"#575757\",t:\"#ffffff\"},\"Bksp\"],[{r:-10,rx:7,ry:0.965,y:-0.2,x:2,c:\"#e3e3e3\",t:\"#000000\"},\"I\"],[{y:-0.65,x:1},\"U\",{x:1},\"O\"],[{y:-0.75,x:4},\"P\"],[{y:-0.9},\"Y\"],[{y:-0.7,x:2},\"K\"],[{y:-0.65,x:1},\"J\",{x:1},\"L\"],[{y:-0.75,x:4},\":\"],[{y:-0.9},\"H\"],[{y:-0.7,x:2},\"<\"],[{y:-0.65,x:1},\"M\",{x:1},\">\"],[{y:-0.75,x:4},\"?\"],[{y:-0.9},\"N\"],[{y:-0.75,x:-1,c:\"#575757\",t:\"#ffffff\",h:1.5},\"Alt\"],[{y:-0.95,x:2,c:\"#e3e3e3\",t:\"#000000\"},\"_\"],[{y:-0.65,x:1,c:\"#575757\",t:\"#ffffff\"},\"fn\",{x:1,c:\"#e3e3e3\",t:\"#000000\"},\"\\\"\"],[{y:-0.75,x:4,c:\"#ab0202\",t:\"#e3e3e3\"},\"Enter\"],[{y:-0.9,c:\"#e3e3e3\",t:\"#000000\"},\"Space\"]"
+        keymap: "",
+        rawdata: "[{x:3,c:\"#a1a1a1\",t:\"#ffffff\",p:\"DSA\",a:7},\"3\",{x:6.85},\"8\"],[{y:-0.9,x:2},\"2\"],[{y:-1,x:4},\"4\"],[{y:-1,x:9.85},\"7\"],[{y:-1,x:11.85},\"9\"],[{y:-0.9,x:5},\"5\"],[{y:-1,x:8.85},\"6\"],[{y:-0.8},\"0\",\"1\",{x:10.85},\"10\",\"11\"],[{y:-0.4,x:3},\"15\",{x:6.85},\"20\"],[{y:-0.9,x:2},\"14\",{x:1},\"16\",{x:4.85},\"19\",{x:1},\"21\"],[{y:-0.9,x:5},\"17\",{x:2.85},\"18\"],[{y:-0.8},\"12\",\"13\",{x:10.85},\"22\",\"23\"],[{y:-0.4,x:3},\"27\",{x:6.85},\"32\"],[{y:-0.9,x:2},\"26\",{x:1},\"28\",{x:4.85},\"31\",{x:1},\"33\"],[{y:-0.9,x:5},\"29\",{x:2.85},\"30\"],[{y:-0.8},\"24\",\"25\",{x:10.85},\"34\",\"35\"],[{y:-0.2,x:3.5},\"36\",{x:5.85},\"41\"],[{r:15,rx:7.5,ry:4,y:-0.05,x:-2.8},\"37\"],[{r:30,y:-1.05,x:-1.5,h:1.5},\"38\"],[{r:-30,y:-1.1,x:0.35,h:1.5},\"39\"],[{r:-15,y:-0.9,x:1.65},\"40\"]"
       },
 
 
@@ -75,7 +84,7 @@
             gr.add(kc)
             var bk = kc.bbox()
 
-            var t0 = that.draw.text("X")
+            var t0 = that.draw.text(key.mainKey())
                         .font({ fill: '#000', family: 'Helvetica' })
                         .size(fontsize)
             var bt0 = t0.bbox()
@@ -83,36 +92,36 @@
             t0.cy(bk.height / 2)
             gr.add(t0)
 
-            var t1 = that.draw.text("LO")
+            var t1 = that.draw.text("LOW")
                         .font({ fill: '#FF8000', family: 'Helvetica' })
-                        .size(12)
+                        .size(layerfont)
             var bt1 = t1.bbox()
             // if (bt1.width > 20) t1.transform({scaleX: 20 / bt1.width, cx: 0})
             t1.x(3)
             t1.y(3)
             gr.add(t1)
 
-            var t2 = that.draw.text("L1")
+            var t2 = that.draw.text("ADJ")
                         .font({ fill: '#2E2EFE', family: 'Helvetica' })
-                        .size(12)
+                        .size(layerfont)
             var bt2 = t2.bbox()
             // if (bt2.width > 20) t2.transform({scaleX: 20 / bt2.width, cx: 0})
             t2.x(3)
             t2.y(bk.height - 3 - bt2.height)
             gr.add(t2)
 
-            var t3 = that.draw.text("RA")
+            var t3 = that.draw.text("RAI")
                         .font({ fill: '#04B431', family: 'Helvetica' })
-                        .size(12)
+                        .size(layerfont)
             var bt3 = t3.bbox()
             // if (bt3.width > 20) t3.transform({scaleX: 20 / bt3.width, cx: bt3.width})
             t3.x(bk.width - 3 - bt3.width)
             t3.y(3)
             gr.add(t3)
 
-            var t4 = that.draw.text("L2")
+            var t4 = that.draw.text("LAY")
                         .font({ fill: '#BF00FF', family: 'Helvetica' })
-                        .size(12)
+                        .size(layerfont)
             var bt4 = t4.bbox()
             // if (bt4.width > 20) t4.transform({scaleX: 20 / bt4.width, cx: bt4.width})
             t4.x(bk.width - 3 - bt4.width)
