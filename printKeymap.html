@@ -70,27 +70,30 @@
           var that = this
           var kmap = []
 
+          // parse KLE data and render keyboard
+          var kb = KLEparser(that.rawdata)
+
           if (that.keymap.length > 0) {
-            var km = that.keymap.replace(/\/\/[^\n]+\n/g, "").replace(/\\\s*\n/g, "")
+            var km = that.keymap.replace(/\/\*[^]+?\*\//g, "").replace(/\/\/[^\n]+\n/g, "").replace(/\\\s*\n/g, "").replace(/\n/g, "")
             // console.log(km)
-            km.split('\n').forEach(function(line){
-              var mc = line.match(/LAYOUT\((.*)\)/)
-              if (mc != null && mc.length > 1) {
-                var kc = mc[1].split(/,/)
-                for (var i = 0; i < kc.length; i++) {
-                  kc[i] = kc[i].replace(/\s+/g, "").replace(/KC_NO/, "").replace(/KC_TRS/, "").replace(/KC_/, "")
-                }
-                console.log(kc)
-                kmap.push(kc)
+            lines = km.split("LAYOUT(")
+            console.log(lines)
+            for (k = 1; k < lines.length; k++) {
+              var kc = lines[k].replace(/\)[^\)]+$/g, "").split(",")
+             console.log(kc)
+              if (kc != null && kc.length == kb.keys.length) {
+                  for (var j = 0; j < kc.length; j++) {
+                    kc[j] = kc[j].replace(/\s+/g, "").replace(/KC_NO/, "").replace(/KC_TRS/, "").replace(/XXXXXXX/, "").replace(/_______/, "").replace(/KC_/, "").replace(/JP_/, "")
+                  }
+                  // console.log(kc)
+                  kmap.push(kc)
               }
-            })
+            }
           }
 
           if (that.draw == "") that.draw = SVG("keymap").size(1500, 500)
           that.draw.clear()
 
-          // parse KLE data and render keyboard
-          var kb = KLEparser(that.rawdata)
           var c = 0
 
           kb.keys.forEach(function(key){
@@ -121,26 +124,35 @@
                         .font({ fill: '#000', family: 'Helvetica' })
                         .size(fontsize)
             var bt0 = t0.bbox()
-            if (bt0.width > 40) t0.transform({scaleX: 40 / bt0.width})
             t0.cx(bk.width / 2)
             t0.cy(bk.height / 2)
+            if (bt0.width > 40) t0.scale(40 / bt0.width, 1)
             gr.add(t0)
 
             var t1 = that.draw.text(leg[1])
                         .font({ fill: '#FF8000', family: 'Helvetica' })
                         .size(layerfont)
             var bt1 = t1.bbox()
-            if (bt1.width > 21) t1.transform({scaleX: 21 / bt1.width, cx: 0})
-            t1.x(2)
+            if (bt1.width > 21) {
+              t1.cx(2 + bt1.width * 21 / bt1.width / 2)
+              t1.scale(21 / bt1.width, 1)
+            } else {
+              t1.x(2)
+            }
             t1.y(2)
+            if (bt1.width > 21) t1.scale(21 / bt1.width, 1)
             gr.add(t1)
 
             var t2 = that.draw.text(leg[2])
                         .font({ fill: '#2E2EFE', family: 'Helvetica' })
                         .size(layerfont)
             var bt2 = t2.bbox()
-            if (bt2.width > 21) t2.transform({scaleX: 21 / bt2.width, cx: 0})
-            t2.x(2)
+            if (bt2.width > 21) {
+              t2.cx(2 + bt2.width * 21 / bt2.width / 2)
+              t2.scale(21 / bt2.width, 1)
+            } else {
+              t2.x(2)
+            }
             t2.y(bk.height - 2 - bt2.height)
             gr.add(t2)
 
