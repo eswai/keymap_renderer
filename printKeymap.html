@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Keymap for Print Generator</title>
+    <title>Keymap Renderer</title>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="KLEparser.js"></script>
     <script src="svg.min.js"></script>
@@ -13,7 +13,7 @@
   <body>
     <div class="container">
       <section class="section">
-        <h1 class="title">Keymap for Print Generator</h1>
+        <h1 class="title">Keymap Renderer</h1>
         <div id="app">
           <div class="field">
             <label class="label">Keyboard Layout Editor Raw data</label>
@@ -42,7 +42,7 @@
             <div class="container">
               <div class="content">
                 <ul type="1">
-                  <li>Keyboard Layout Editorでキーボードのレイアウトを作って、raw dataを貼り付ける。QMKのkeymapのキーの定義の順番になるよう0から数字をLegendに入力する。Keyboard Layout Editorのデータの例は<a href="http://www.keyboard-layout-editor.com/#/gists/c6c9c9a5523af89828de3d067436f92a" target="_">ここ(KLE)</a></li>
+                  <li>Keyboard Layout Editorでキーボードのレイアウトを作って、raw dataを貼り付ける。QMKのkeymapのキーの定義の順番になるよう0から数字をLegendに入力する。Keyboard Layout Editorのデータの例は<a href="http://www.keyboard-layout-editor.com/#/gists/c6c9c9a5523af89828de3d067436f92a" target="_">crkbd</a>、<a href="http://www.keyboard-layout-editor.com/#/gists/d15a132c6c06dcd23ad7a7ecc89d9da9" target="_">Atreus</a></li>
                   <li>QMKのkeymap.cのkeymaps変数を貼り付ける。</li>
                   <li>レイヤーは最初の5つが表示されます。</li>
                   <li>LAYOUT_kcなどのマクロには対応していません。</li>
@@ -54,7 +54,7 @@
       <footer class="footer">
         <div class="content has-text-centered">
           <p>
-            <strong>Keymap for Print</strong> by <a href="https://github.com/eswai/">eswai</a>. The source code is licensed
+            <strong>Keymap Renderer</strong> by <a href="https://github.com/eswai/">eswai</a>. The source code is licensed
             <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
           </p>
         </div>
@@ -71,8 +71,6 @@
     var app = new Vue({
       el: '#app',
       data: {
-        dwidth: 1500,
-        dheight: 500,
         draw: "",
         keymap: "const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {\n  [_QWERTY] = LAYOUT( \\ \n  //,-----------------------------------------.                ,-----------------------------------------.\n     KC_TAB,  KC_Q,  KC_W,  KC_E,  KC_R,  KC_T,                   KC_Y,  KC_U,  KC_I,  KC_O,  KC_P,KC_BSPC,\\ \n  //|------+------+------+------+------+------|                |------+------+------+------+------+------|\n    KC_LCTL,  KC_A,  KC_S,  KC_D,  KC_F,  KC_G,                   KC_H,  KC_J,  KC_K,  KC_L,KC_SCLN,KC_QUOT,\\ \n  //|------+------+------+------+------+------|                |------+------+------+------+------+------|\n    KC_LSFT,  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,                   KC_N,  KC_M,KC_COMM,KC_DOT,KC_SLSH,KC_RSFT,\\ \n  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|\n                                KC_LGUI, LOWER,KC_SPC,   KC_ENT, RAISE,KC_RALT \\ \n                              //`--------------------'  `--------------------'\n  ),\n\n  [_LOWER] = LAYOUT( \\ \n  //,-----------------------------------------.                ,-----------------------------------------.\n     KC_ESC,  KC_1,  KC_2,  KC_3,  KC_4,  KC_5,                   KC_6,  KC_7,  KC_8,  KC_9,  KC_0,KC_BSPC,\\ \n  //|------+------+------+------+------+------|                |------+------+------+------+------+------|\n    KC_LCTL, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                KC_LEFT,KC_DOWN,KC_UP, KC_RIGHT,KC_NO,KC_NO,\\ \n  //|------+------+------+------+------+------|                |------+------+------+------+------+------|\n    KC_LSFT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,\\ \n  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|\n                                KC_LGUI, LOWER,KC_SPC,   KC_ENT, RAISE,KC_RALT \\ \n                              //`--------------------'  `--------------------'\n  ),\n\n  [_RAISE] = LAYOUT( \\ \n  //,-----------------------------------------.                ,-----------------------------------------.\n     KC_ESC,KC_EXLM,KC_AT,KC_HASH,KC_DLR,KC_PERC,              KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,KC_BSPC,\\ \n  //|------+------+------+------+------+------|                |------+------+------+------+------+------|\n    KC_LCTL, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                KC_MINS,KC_EQL,KC_LCBR,KC_RCBR,KC_PIPE,KC_GRV,\\ \n  //|------+------+------+------+------+------|                |------+------+------+------+------+------|\n    KC_LSFT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                KC_UNDS,KC_PLUS,KC_LBRC,KC_RBRC,KC_BSLS,KC_TILD,\\ \n  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|\n                                KC_LGUI, LOWER,KC_SPC,   KC_ENT, RAISE,KC_RALT \\ \n                              //`--------------------'  `--------------------'\n  ),\n\n  [_ADJUST] = LAYOUT( \\ \n  //,-----------------------------------------.                ,-----------------------------------------.\n      RESET,RGBRST, KC_NO, KC_NO, KC_NO, KC_NO,                  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,\\ \n  //|------+------+------+------+------+------|                |------+------+------+------+------+------|\n    RGB_TOG,RGB_HUI,RGB_SAI,RGB_VAI,KC_NO,KC_NO,                 KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,\\ \n  //|------+------+------+------+------+------|                |------+------+------+------+------+------|\n    RGB_MOD,RGB_HUD,RGB_SAD,RGB_VAD,KC_NO,KC_NO,                 KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,\\ \n  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|\n                                KC_LGUI, LOWER,KC_SPC,   KC_ENT, RAISE,KC_RALT \\ \n                              //`--------------------'  `--------------------'\n  )\n};",
         rawdata: "[{x:3,c:\"#a1a1a1\",t:\"#ffffff\",p:\"DSA\",a:7},\"3\",{x:6.85},\"8\"],[{y:-0.9,x:2},\"2\"],[{y:-1,x:4},\"4\"],[{y:-1,x:9.85},\"7\"],[{y:-1,x:11.85},\"9\"],[{y:-0.9,x:5},\"5\"],[{y:-1,x:8.85},\"6\"],[{y:-0.8},\"0\",\"1\",{x:10.85},\"10\",\"11\"],[{y:-0.4,x:3},\"15\",{x:6.85},\"20\"],[{y:-0.9,x:2},\"14\",{x:1},\"16\",{x:4.85},\"19\",{x:1},\"21\"],[{y:-0.9,x:5},\"17\",{x:2.85},\"18\"],[{y:-0.8},\"12\",\"13\",{x:10.85},\"22\",\"23\"],[{y:-0.4,x:3},\"27\",{x:6.85},\"32\"],[{y:-0.9,x:2},\"26\",{x:1},\"28\",{x:4.85},\"31\",{x:1},\"33\"],[{y:-0.9,x:5},\"29\",{x:2.85},\"30\"],[{y:-0.8},\"24\",\"25\",{x:10.85},\"34\",\"35\"],[{y:-0.2,x:3.5},\"36\",{x:5.85},\"41\"],[{r:15,rx:7.5,ry:4,y:-0.05,x:-2.8},\"37\"],[{r:30,y:-1.05,x:-1.5,h:1.5},\"38\"],[{r:-30,y:-1.1,x:0.35,h:1.5},\"39\"],[{r:-15,y:-0.9,x:1.65},\"40\"]"
@@ -100,67 +98,78 @@
           gr.add(kc)
           var bk = kc.bbox()
 
-          var t0 = that.draw.text(leg[0])
-                      .font({ fill: '#000', family: 'Arial' })
-                      .size(fontsize)
-          var bt0 = t0.bbox()
-          t0.cx(bk.width / 2)
-          t0.cy(bk.height / 2)
-          if (bt0.width > 40) t0.scale(40 / bt0.width, 1)
-          gr.add(t0)
-
-          var t1 = that.draw.text(leg[4])
-                      .font({ fill: '#01DF01', family: 'Arial' })
-                      .size(layerfont)
-          var bt1 = t1.bbox()
-          if (bt1.width > 21) {
-            t1.cx(2 + bt1.width * 21 / bt1.width / 2)
-            t1.scale(21 / bt1.width, 1)
-          } else {
-            t1.x(2)
+          if (leg[0] != "") {
+            console.log(leg)
+            var t0 = that.draw.text(leg[0])
+                        .font({ fill: '#000', family: 'Arial' })
+                        .size(fontsize)
+            var bt0 = t0.bbox()
+            t0.cx(bk.width / 2)
+            t0.cy(bk.height / 2)
+            if (bt0.width > 40) t0.scale(40 / bt0.width, 1)
+            gr.add(t0)
           }
-          t1.y(2)
-          if (bt1.width > 21) t1.scale(21 / bt1.width, 1)
-          gr.add(t1)
 
-          var t2 = that.draw.text(leg[1])
-                      .font({ fill: '#0080FF', family: 'Arial' })
-                      .size(layerfont)
-          var bt2 = t2.bbox()
-          if (bt2.width > 21) {
-            t2.cx(2 + bt2.width * 21 / bt2.width / 2)
-            t2.scale(21 / bt2.width, 1)
-          } else {
-            t2.x(2)
+          if (leg[4] != "") {
+            var t1 = that.draw.text(leg[4])
+                        .font({ fill: '#01DF01', family: 'Arial' })
+                        .size(layerfont)
+            var bt1 = t1.bbox()
+            if (bt1.width > 21) {
+              t1.cx(2 + bt1.width * 21 / bt1.width / 2)
+              t1.scale(21 / bt1.width, 1)
+            } else {
+              t1.x(2)
+            }
+            t1.y(2)
+            if (bt1.width > 21) t1.scale(21 / bt1.width, 1)
+            gr.add(t1)
           }
-          t2.y(bk.height - 2 - bt2.height)
-          gr.add(t2)
 
-          var t3 = that.draw.text(leg[3])
-                      .font({ fill: '#8000FF', family: 'Arial' })
-                      .size(layerfont)
-          var bt3 = t3.bbox()
-          if (bt3.width > 21) {
-            t3.cx(bk.width - 2 - bt3.width * 21 / bt3.width / 2)
-            t3.scale(21 / bt3.width, 1)
-          } else {
-            t3.x(bk.width - 2 - bt3.width)
+          if (leg[1] != "") {
+            var t2 = that.draw.text(leg[1])
+                        .font({ fill: '#0080FF', family: 'Arial' })
+                        .size(layerfont)
+            var bt2 = t2.bbox()
+            if (bt2.width > 21) {
+              t2.cx(2 + bt2.width * 21 / bt2.width / 2)
+              t2.scale(21 / bt2.width, 1)
+            } else {
+              t2.x(2)
+            }
+            t2.y(bk.height - 2 - bt2.height)
+            gr.add(t2)
           }
-          t3.y(bk.height - 2 - bt3.height)
-          gr.add(t3)
 
-          var t4 = that.draw.text(leg[2])
-                      .font({ fill: '#FF8000', family: 'Arial' })
-                      .size(layerfont)
-          var bt4 = t4.bbox()
-          if (bt4.width > 21) {
-            t4.cx(bk.width - 2 - bt4.width * 21 / bt4.width / 2)
-            t4.scale(21 / bt4.width, 1)
-          } else {
-            t4.x(bk.width - 2 - bt4.width)
+          if (leg[3] != "") {
+            var t3 = that.draw.text(leg[3])
+                        .font({ fill: '#8000FF', family: 'Arial' })
+                        .size(layerfont)
+            var bt3 = t3.bbox()
+            if (bt3.width > 21) {
+              t3.cx(bk.width - 2 - bt3.width * 21 / bt3.width / 2)
+              t3.scale(21 / bt3.width, 1)
+            } else {
+              t3.x(bk.width - 2 - bt3.width)
+            }
+            t3.y(bk.height - 2 - bt3.height)
+            gr.add(t3)
           }
-          t4.y(2)
-          gr.add(t4)
+
+          if (leg[2] != "") {
+            var t4 = that.draw.text(leg[2])
+                        .font({ fill: '#FF8000', family: 'Arial' })
+                        .size(layerfont)
+            var bt4 = t4.bbox()
+            if (bt4.width > 21) {
+              t4.cx(bk.width - 2 - bt4.width * 21 / bt4.width / 2)
+              t4.scale(21 / bt4.width, 1)
+            } else {
+              t4.x(bk.width - 2 - bt4.width)
+            }
+            t4.y(2)
+            gr.add(t4)
+          }
 
           return gr
         },
@@ -201,7 +210,7 @@
             }
           }
 
-          if (that.draw == "") that.draw = SVG("keymap").size(that.dwidth, that.dheight)
+          if (that.draw == "") that.draw = SVG("keymap").size(1500, 500)
           that.draw.size(that.dwidth, that.dheight).clear()
 
           that.createKey(1.5, 1, layers).move(5, 2)
@@ -210,15 +219,15 @@
           kb.keys.forEach(function(key){
             var kpos = parseInt(key.mainKey())
 
-            var leg = []
+            var leg = ["", "", "", "", ""]
             for (var i = 0; i < 5; i++) {
               if (kmap[i] == null) {
-                leg.push("")
+                leg[i] = ""
               } else {
                 if (i > 0 && kmap[i][kpos] == kmap[0][kpos]) {
-                  leg.push("")
+                  leg[i] = ""
                 } else {
-                  leg.push(kmap[i][kpos])
+                  leg[i] = kmap[i][kpos]
                 }
               }
             }
@@ -231,9 +240,7 @@
             c++
           })
 
-          that.dwidth = that.draw.bbox().width + 5
-          that.dheight = that.draw.bbox().height + 5
-          console.log(that.draw.bbox())
+          that.draw.size(that.draw.bbox().width + 10, that.draw.bbox().height + 10)
         }
       }
     })
