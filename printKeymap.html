@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Keymap Renderer</title>
+    <title>QMK Keymap Renderer</title>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="js/KLEparser.js"></script>
     <script src="js/svg.min.js"></script>
@@ -14,7 +14,7 @@
   <body>
     <div class="container">
       <section class="section">
-        <h1 class="title">Keymap Renderer</h1>
+        <h1 class="title">QMK Keymap Renderer</h1>
         <div id="app">
 
           <div class="field">
@@ -65,7 +65,8 @@
             <div class="container">
               <div class="content">
                 <ul type="1">
-                  <li>Keyboard Layout Editorでキーボードのレイアウトを作って、raw dataを貼り付ける。QMKのkeymapのキーの定義の順番になるよう0から数字をLegendに入力する。Keyboard Layout Editorのデータの例は<a href="http://www.keyboard-layout-editor.com/#/gists/c6c9c9a5523af89828de3d067436f92a" target="_">crkbd</a>、<a href="http://www.keyboard-layout-editor.com/#/gists/d15a132c6c06dcd23ad7a7ecc89d9da9" target="_">Atreus</a>、<a href="http://www.keyboard-layout-editor.com/#/gists/f5f4c186d28ec7f5570a2b0b29e456b2" target="_">Planck</a></li>
+                  <li>Templateyにキーボードがある場合は選択する。</li>
+                  <li>Templateにない場合は、Keyboard Layout Editorでキーボードのレイアウトを作って、raw dataを貼り付ける。QMKのkeymapのキーの定義の順番になるよう0から数字をLegendに入力する。Keyboard Layout Editorのデータの例は<a href="http://www.keyboard-layout-editor.com/#/gists/c6c9c9a5523af89828de3d067436f92a" target="_">crkbd</a>、<a href="http://www.keyboard-layout-editor.com/#/gists/d15a132c6c06dcd23ad7a7ecc89d9da9" target="_">Atreus</a>、<a href="http://www.keyboard-layout-editor.com/#/gists/f5f4c186d28ec7f5570a2b0b29e456b2" target="_">Planck</a></li>
                   <li>QMKのkeymap.cのkeymaps変数を貼り付ける。</li>
                   <li>レイヤーは最初の5つが表示されます。</li>
                   <li>LAYOUT_kcなどのマクロには対応していません。</li>
@@ -78,7 +79,7 @@
       <footer class="footer">
         <div class="content has-text-centered">
           <p>
-            <strong>Keymap Renderer</strong> by <a href="https://github.com/eswai/">eswai</a>. The source code is licensed
+            <strong>QMK Keymap Renderer</strong> by <a href="https://github.com/eswai/">eswai</a>. The source code is licensed
             <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
           </p>
         </div>
