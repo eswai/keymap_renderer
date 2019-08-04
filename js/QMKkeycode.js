@@ -1,5 +1,4 @@
-function convertKCtoChar(kc) {
-  const KCtoChar = {
+const KCtoChar = {
     "KC_NO" : "",
     "XXXXXXX" : "",
     "KC_ROLL_OVER" : "",
@@ -227,7 +226,7 @@ function convertKCtoChar(kc) {
     "_______" : "",
 
 
-/* Punctuation */
+    /* Punctuation */
     "KC_ENT" : "Enter",
     "KC_ESC" : "Esc",
     "KC_BSPC" : "Backsp",
@@ -245,7 +244,7 @@ function convertKCtoChar(kc) {
     "KC_SLSH" : "/",
     "KC_NUBS" : "\\",
 
-/* Lock Keys */
+    /* Lock Keys */
     "KC_CLCK" : "",
     "KC_CAPS" : "Caps Lock",
     "KC_SLCK" : "",
@@ -254,7 +253,7 @@ function convertKCtoChar(kc) {
     "KC_LNUM" : "Num Lock",
     "KC_LSCR" : "",
 
-/* Commands */
+    /* Commands */
     "KC_PSCR" : "PSCREEN",
     "KC_PAUS" : "Pause",
     "KC_BRK" : "Break",
@@ -270,7 +269,7 @@ function convertKCtoChar(kc) {
     "KC_ERAS" : "ERASE",
     "KC_CLR" : "CLEAR",
 
-/* Keypad */
+    /* Keypad */
     "KC_PSLS" : "/",
     "KC_PAST" : "*",
     "KC_PMNS" : "-",
@@ -477,8 +476,9 @@ function convertKCtoChar(kc) {
     "LOWER" : "Lower",
     "RAISE" : "Raise",
     "ADJUST" : "Adjust",
-  }
+}
 
+function convertKCtoChar(kc) {
   var c = kc.trim()
   if (c in KCtoChar) {
     return KCtoChar[c]
