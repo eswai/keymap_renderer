@@ -225,7 +225,18 @@
             lines = km.split("LAYOUT(")
             // console.log(lines)
             for (var k = 1; k < lines.length; k++) {
-              var kc = lines[k].replace(/\)[^\)]+$/g, "").split(",")
+              var kc = lines[k].replace(/\)[^\)]+$/g, "")
+
+              kc = kc.replace(/LT\(([^\(\)]+),([^\(\)]+)\)/g, "$2($1)")
+                     .replace(/LM\(([^\(\)]+),([^\(\)]+)\)/g, "$2[$1]")
+                     .replace(/[LR]ALT_T\(([^\(\)]+)\)/g, "$1(Alt)")
+                     .replace(/[LR]GUI_T\(([^\(\)]+)\)/g, "$1(Gui)")
+                     .replace(/[LR]CTL_T\(([^\(\)]+)\)/g, "$1(Ctl)")
+                     .replace(/[LR]SFT_T\(([^\(\)]+)\)/g, "$1(Sft)")
+                     .replace(/[LR]CMD_T\(([^\(\)]+)\)/g, "$1(Cmd)")
+              // console.log(kc)
+
+              kc = kc.split(",")
              // console.log(kc)
               if (kc != null && kc.length == kb.keys.length) {
                   for (var j = 0; j < kc.length; j++) {
