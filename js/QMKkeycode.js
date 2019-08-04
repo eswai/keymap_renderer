@@ -1,5 +1,6 @@
 const KCtoChar = {
     "KC_NO" : "",
+    "XXXXX" : "",
     "XXXXXXX" : "",
     "KC_ROLL_OVER" : "",
     "KC_POST_FAIL" : "",
@@ -224,7 +225,7 @@ const KCtoChar = {
     "KC_TRANSPARENT" : "",
     "KC_TRNS" : "",
     "_______" : "",
-
+    "_____" : "",
 
     /* Punctuation */
     "KC_ENT" : "Enter",
@@ -291,7 +292,7 @@ const KCtoChar = {
 
     /* Japanese specific */
     "KC_ZKHK" : "ZKHK",
-    "KC_RO" : "RO",
+    "KC_RO" : "\\",
     "KC_KANA" : "KANA",
     "KC_JYEN" : "¥",
     "KC_HENK" : "HENK",
