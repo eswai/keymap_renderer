@@ -30,6 +30,7 @@
                   <option>Helix (4rows)</option>
                   <option>Helix (5rows)</option>
                   <option>Nomu30</option>
+                  <option>meishi</option>
                 </select>
               </div>
             </div>
@@ -234,6 +235,11 @@
                      .replace(/[LR]CTL_T\(([^\(\)]+)\)/g, "$1(Ctl)")
                      .replace(/[LR]SFT_T\(([^\(\)]+)\)/g, "$1(Sft)")
                      .replace(/[LR]CMD_T\(([^\(\)]+)\)/g, "$1(Cmd)")
+                     .replace(/[LR]CTL\(([^\(\)]+)\)/g, "Ctl+$1")
+                     .replace(/[LR]SFT\(([^\(\)]+)\)/g, "Sft+$1")
+                     .replace(/[LR]ALT\(([^\(\)]+)\)/g, "Alt+$1")
+                     .replace(/[LR]GUI\(([^\(\)]+)\)/g, "Gui+$1")
+                     .replace(/[LR]CMD\(([^\(\)]+)\)/g, "Cmd+$1")
               // console.log(kc)
 
               kc = kc.split(",")
