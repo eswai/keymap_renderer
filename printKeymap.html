@@ -219,7 +219,7 @@
             console.log(layers)
 
             // console.log(km)
-            lines = km.split("LAYOUT(")
+            lines = km.split(/LAYOUT[_a-zA-Z]*\(/)
             // console.log(lines)
             for (var k = 1; k < lines.length; k++) {
               var kc = lines[k].replace(/\)[^\)]+$/g, "")
@@ -240,7 +240,7 @@
 
               kc = kc.split(",")
              // console.log(kc)
-              if (kc != null && kc.length == kb.keys.length) {
+              if (kc != null && kc.length >= kb.keys.length) {
                   for (var j = 0; j < kc.length; j++) {
                     kc[j] = convertKCtoChar(kc[j])
                   }
