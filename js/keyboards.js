@@ -23,5 +23,5 @@ function getKeyboard(kb){
 }
 
 function getKeyboardList(){
-  return Object.keys(keyboards)
+  return Object.keys(keyboards).sort()
 }
