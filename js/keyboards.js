@@ -20,3 +20,7 @@ const keyboards = {
 function getKeyboard(kb){
   return keyboards[kb]
 }
+
+function getKeyboardList(){
+  return Object.keys(keyboards)
+}
