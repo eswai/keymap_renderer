@@ -60,7 +60,7 @@
                   <li>Templateにない場合は、Keyboard Layout Editorでキーボードのレイアウトを作って、raw dataを貼り付ける。QMKのkeymapのキーの定義の順番になるよう0から数字をLegendに入力する。Keyboard Layout Editorのデータの例は<a href="http://www.keyboard-layout-editor.com/#/gists/c6c9c9a5523af89828de3d067436f92a" target="_">crkbd</a>、<a href="http://www.keyboard-layout-editor.com/#/gists/d15a132c6c06dcd23ad7a7ecc89d9da9" target="_">Atreus</a>、<a href="http://www.keyboard-layout-editor.com/#/gists/f5f4c186d28ec7f5570a2b0b29e456b2" target="_">Planck</a></li>
                   <li>QMKのkeymap.cのkeymaps変数を貼り付ける。</li>
                   <li>レイヤーは最初の5つが表示されます。</li>
-                  <li>LAYOUT_kcなどのマクロには対応していません。</li>
+                  <li>LAYOUT_kcマクロに対応。</li>
                   <li>iOSでは動作しないようです。調査中。</li>
                 </ul>
               </div>
@@ -219,6 +219,10 @@
             console.log(layers)
 
             // console.log(km)
+
+            var fk = false
+            if (km.match(/LAYOUT_kc/g).length > 0) fk = true
+
             lines = km.split(/LAYOUT[_a-zA-Z]*\(/)
             // console.log(lines)
             for (var k = 1; k < lines.length; k++) {
@@ -244,11 +248,11 @@
               kc = kc.split(",")
              // console.log(kc)
               if (kc != null && kc.length >= kb.keys.length) {
-                  for (var j = 0; j < kc.length; j++) {
-                    kc[j] = convertKCtoChar(kc[j])
-                  }
-                  console.log(kc)
-                  kmap.push(kc)
+                for (var j = 0; j < kc.length; j++) {
+                  kc[j] = convertKCtoChar(kc[j], fk)
+                }
+                console.log(kc)
+                kmap.push(kc)
               }
             }
           }

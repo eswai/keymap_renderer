@@ -2,6 +2,7 @@ const KCtoChar = {
     "KC_NO" : "",
     "XXXXX" : "",
     "XXXXXXX" : "",
+    "KC_XXXXX" : "",
     "KC_ROLL_OVER" : "",
     "KC_POST_FAIL" : "",
     "KC_UNDEFINED" : "",
@@ -226,6 +227,7 @@ const KCtoChar = {
     "KC_TRNS" : "",
     "_______" : "",
     "_____" : "",
+    "KC______" : "",
 
     /* Punctuation */
     "KC_ENT" : "Enter",
@@ -479,8 +481,9 @@ const KCtoChar = {
     "ADJUST" : "Adjust",
 }
 
-function convertKCtoChar(kc) {
+function convertKCtoChar(kc, f_kc) {
   var c = kc.trim()
+  if (f_kc) c = "KC_" + c
   if (c in KCtoChar) {
     return KCtoChar[c]
   } else {
