@@ -49,7 +49,9 @@
               <button id="createSvg" v-on:click="createSVG" class="button is-dark">SVG</button>
             </div>
           </div>
+
           <div id="keymap"></div>
+
         </div>
       </section>
 
@@ -239,10 +241,10 @@
                      .replace(/[LR]*CTL_T\(([^\(\)]+)\)/g, "$1/Ctl")
                      .replace(/[LR]*SFT_T\(([^\(\)]+)\)/g, "$1/Sft")
                      .replace(/[LR]*CMD_T\(([^\(\)]+)\)/g, "$1/Cmd")
-                     .replace(/[LR]*CTL\(([^\(\)]+)\)/g, "Ctl+$1")
-                     .replace(/[LR]*SFT\(([^\(\)]+)\)/g, "Sft+$1")
-                     .replace(/[LR]*ALT\(([^\(\)]+)\)/g, "Alt+$1")
-                     .replace(/[LR]*GUI\(([^\(\)]+)\)/g, "Gui+$1")
+                     .replace(/[LR]*C(TL)?\(([^\(\)]+)\)/g, "Ctl+$2")
+                     .replace(/[LR]*S(FT)?\(([^\(\)]+)\)/g, "Sft+$2")
+                     .replace(/[LR]*A(LT)?\(([^\(\)]+)\)/g, "Alt+$2")
+                     .replace(/[LR]*G(UI)?\(([^\(\)]+)\)/g, "Gui+$2")
                      .replace(/[LR]*CMD\(([^\(\)]+)\)/g, "Cmd+$1")
               // console.log(kc)
 
