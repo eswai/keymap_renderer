@@ -293,12 +293,12 @@ const KCtoChar = {
     "KC_PCMM" : ",",
 
     /* Japanese specific */
-    "KC_ZKHK" : "ZKHK",
+    "KC_ZKHK" : "半角全角",
     "KC_RO" : "\\",
-    "KC_KANA" : "KANA",
+    "KC_KANA" : "かな",
     "KC_JYEN" : "¥",
-    "KC_HENK" : "HENK",
-    "KC_MHEN" : "MHEN",
+    "KC_HENK" : "変換",
+    "KC_MHEN" : "無変換",
 
     /* Korean specific */
     "KC_HAEN" : "",
@@ -436,7 +436,7 @@ const KCtoChar = {
 
     // JP
 
-    "JP_ZHTG" : "ZHTG",
+    "JP_ZHTG" : "半角全角",
     "JP_YEN" : "¥",
     "JP_CIRC" : "^",
     "JP_AT" : "@",
@@ -444,11 +444,11 @@ const KCtoChar = {
     "JP_COLN" : ":",
     "JP_RBRC" : "]",
     "JP_BSLS" : "\\",
-    "JP_MHEN" : "MHEN",
-    "JP_HENK" : "HENK",
-    "JP_KANA" : "KANA",
-    "JP_MKANA" : "MKANA",
-    "JP_MEISU" : "EISU",
+    "JP_MHEN" : "無変換",
+    "JP_HENK" : "変換",
+    "JP_KANA" : "かな",
+    "JP_MKANA" : "かな",
+    "JP_MEISU" : "英数",
     "JP_DQT" : "\"",
     "JP_AMPR" : "&",
     "JP_QUOT" : "'",
