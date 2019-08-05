@@ -221,7 +221,8 @@
             // console.log(km)
 
             var fk = false
-            if (km.match(/LAYOUT_kc/g).length > 0) fk = true
+            var kcmatch = km.match(/LAYOUT_kc/g)
+            if (kcmatch != null && kcmatch.length > 0) fk = true
 
             lines = km.split(/LAYOUT[_a-zA-Z]*\(/)
             // console.log(lines)
