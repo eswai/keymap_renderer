@@ -66,7 +66,7 @@ function KLEparser(raw) {
   var dx = 0
   var dy = 0
   var p = "DSA"
-  var c = "#cfd8dc"
+  var c = "#cccccc"
   var t = "#000000"
   var f = 3
   var f2 = 3

@@ -114,13 +114,13 @@
           this.rawdata = getKeyboard(this.keyboard)
         },
 
-        createKey: function(w, h, leg) {
+        createKey: function(w, h, leg, col) {
           var that = this
 
           var gr = that.draw.group()
           var kc = that.draw.rect(w * keypitch - keygap, h * keypitch - keygap)
                        .radius(3)
-                       .fill('#fff')
+                       .fill(col)
                        .stroke('#aaa')
           gr.add(kc)
           var bk = kc.bbox()
@@ -264,9 +264,8 @@
           if (that.draw == "") that.draw = SVG("keymap").size(500, 500)
           that.draw.size(that.dwidth, that.dheight).clear()
 
-          that.createKey(1.5, 1, layers).move(5, 2)
+          that.createKey(1.5, 1, layers, "#ffffff").move(5, 2)
 
-          var c = 0
           kb.keys.forEach(function(key){
             var kpos = parseInt(key.mainKey())
 
@@ -283,12 +282,17 @@
               }
             }
 
-            var gr = that.createKey(key.w, key.h, leg)
+            var col
+            if (key.c == "#cccccc") {
+              col = "#ffffff"
+            } else {
+              col = key.c
+            }
+            var gr = that.createKey(key.w, key.h, leg, col)
 
             gr.cx(key.centerX() * keypitch)
             gr.cy(key.centerY() * keypitch + keypitch + 10)
             gr.rotate(key.r * 180 / Math.PI)
-            c++
           })
 
           that.draw.size(that.draw.bbox().x2 + 10, that.draw.bbox().y2 + 10)
