@@ -64,6 +64,7 @@
                   <li>レイヤーは最初の5つが表示されます。</li>
                   <li>LAYOUT_kcマクロに対応。</li>
                   <li>iOSでは動作しないようです。調査中。</li>
+                  <li>出力したSVGはMarkdownなら![My keymap](keymap.svg "Crkbd")で取り込めます。</li>
                 </ul>
               </div>
             </div>
@@ -290,7 +291,7 @@
             c++
           })
 
-          that.draw.size(that.draw.bbox().width + 10, that.draw.bbox().height + 10)
+          that.draw.size(that.draw.bbox().x2 + 10, that.draw.bbox().y2 + 10)
         }
       }
     })
