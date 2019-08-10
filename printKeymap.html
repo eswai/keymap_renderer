@@ -266,6 +266,7 @@
 
           that.createKey(1.5, 1, layers, "#ffffff").move(5, 2)
 
+          var keygr = that.draw.group()
           kb.keys.forEach(function(key){
             var kpos = parseInt(key.mainKey())
 
@@ -291,10 +292,13 @@
             var gr = that.createKey(key.w, key.h, leg, col)
 
             gr.cx(key.centerX() * keypitch)
-            gr.cy(key.centerY() * keypitch + keypitch + 10)
+            gr.cy(key.centerY() * keypitch)
             gr.rotate(key.r * 180 / Math.PI)
+
+            keygr.add(gr)
           })
 
+          keygr.move(-keygr.bbox().x, keypitch + 10 - keygr.bbox().y)
           that.draw.size(that.draw.bbox().x2 + 10, that.draw.bbox().y2 + 10)
         }
       }
