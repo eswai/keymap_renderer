@@ -84,8 +84,8 @@
   <script type="text/javascript">
     const keypitch = 50
     const keygap = 4
-    const fontsize = 13
-    const layerfont = 9
+    const fontsize = 12
+    const layerfont = 10
 
     var app = new Vue({
       el: '#app',
@@ -125,6 +125,7 @@
           gr.add(kc)
           var bk = kc.bbox()
 
+          // Center
           if (leg[0] != "") {
             // console.log(leg)
             var t0 = that.draw.text(leg[0])
@@ -137,66 +138,77 @@
             gr.add(t0)
           }
 
-          if (leg[4] != "") {
-            var t1 = that.draw.text(leg[4])
-                        .font({ fill: '#01DF01', family: 'Arial' })
-                        .size(layerfont)
-            var bt1 = t1.bbox()
-            if (bt1.width > 21) {
-              t1.cx(2 + bt1.width * 21 / bt1.width / 2)
-              t1.scale(21 / bt1.width, 1)
-            } else {
-              t1.x(2)
-            }
-            t1.y(2)
-            if (bt1.width > 21) t1.scale(21 / bt1.width, 1)
-            gr.add(t1)
-          }
+          // Top
+          var t1 = that.draw.text(leg[4])
+                      .font({ fill: '#01DF01', family: 'Arial' })
+                      .size(layerfont)
+          var t4 = that.draw.text(leg[2])
+                      .font({ fill: '#FF8000', family: 'Arial' })
+                      .size(layerfont)
+          var bt1 = t1.bbox()
+          var bt4 = t4.bbox()
 
-          if (leg[1] != "") {
-            var t2 = that.draw.text(leg[1])
-                        .font({ fill: '#0080FF', family: 'Arial' })
-                        .size(layerfont)
-            var bt2 = t2.bbox()
-            if (bt2.width > 21) {
-              t2.cx(2 + bt2.width * 21 / bt2.width / 2)
-              t2.scale(21 / bt2.width, 1)
-            } else {
-              t2.x(2)
-            }
-            t2.y(bk.height - 2 - bt2.height)
-            gr.add(t2)
-          }
+          var w14 = bt1.width + bt4.width
 
-          if (leg[3] != "") {
-            var t3 = that.draw.text(leg[3])
-                        .font({ fill: '#8000FF', family: 'Arial' })
-                        .size(layerfont)
-            var bt3 = t3.bbox()
-            if (bt3.width > 21) {
-              t3.cx(bk.width - 2 - bt3.width * 21 / bt3.width / 2)
-              t3.scale(21 / bt3.width, 1)
-            } else {
-              t3.x(bk.width - 2 - bt3.width)
-            }
-            t3.y(bk.height - 2 - bt3.height)
-            gr.add(t3)
-          }
-
-          if (leg[2] != "") {
-            var t4 = that.draw.text(leg[2])
-                        .font({ fill: '#FF8000', family: 'Arial' })
-                        .size(layerfont)
-            var bt4 = t4.bbox()
-            if (bt4.width > 21) {
-              t4.cx(bk.width - 2 - bt4.width * 21 / bt4.width / 2)
-              t4.scale(21 / bt4.width, 1)
-            } else {
+          if (w14 > 38 * w) {
+            if (leg[4].length == 1) {
+              t1.x(3)
+              t4.cx(bk.width - 2 - bt4.width * (38 - bt1.width) * w / bt4.width / 2)
+              t4.scale((38 - bt1.width) * w / bt4.width, 1)
+            } else if (leg[2].length == 1) {
+              t1.cx(3 + bt1.width * (38 - bt4.width) * w / bt1.width / 2)
               t4.x(bk.width - 2 - bt4.width)
+              t1.scale((38 - bt4.width) * w / bt1.width, 1)
+            } else {
+              t1.cx(3 + bt1.width * 38 * w / w14 / 2)
+              t4.cx(bk.width - 2 - bt4.width * 38 * w / w14 / 2)
+              t1.scale(38 * w / w14, 1)
+              t4.scale(38 * w / w14, 1)
             }
-            t4.y(2)
-            gr.add(t4)
+          } else {
+            t1.x(3)
+            t4.x(bk.width - 2 - bt4.width)
           }
+          t1.y(2)
+          t4.y(2)
+          gr.add(t1)
+          gr.add(t4)
+
+          // Bottom
+          var t2 = that.draw.text(leg[1]) // Left
+                      .font({ fill: '#0080FF', family: 'Arial' })
+                      .size(layerfont)
+          var t3 = that.draw.text(leg[3]) // Right
+                      .font({ fill: '#8000FF', family: 'Arial' })
+                      .size(layerfont)
+          var bt2 = t2.bbox()
+          var bt3 = t3.bbox()
+
+          var w23 = bt2.width + bt3.width
+
+          if (w23 > 38 * w) {
+            if (leg[1].length == 1) {
+              t2.x(3)
+              t3.cx(bk.width - 2 - bt3.width * 38 * w / w23 / 2)
+              t3.scale(38 * w / w23, 1)
+            } else if (leg[3].length == 1) {
+              t2.cx(3 + bt2.width * 38 * w / w23 / 2)
+              t3.x(bk.width - 2 - bt3.width)
+              t2.scale(38 * w / w23, 1)
+            } else {
+              t2.cx(3 + bt2.width * 38 * w / w23 / 2)
+              t3.cx(bk.width - 2 - bt3.width * 38 * w / w23 / 2)
+              t2.scale(38 * w / w23, 1)
+              t3.scale(38 * w / w23, 1)
+            }
+          } else {
+            t2.x(3)
+            t3.x(bk.width - 2 - bt3.width)
+          }
+          t2.y(bk.height - 2 - bt2.height)
+          t3.y(bk.height - 2 - bt3.height)
+          gr.add(t2)
+          gr.add(t3)
 
           return gr
         },
